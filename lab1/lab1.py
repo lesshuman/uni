@@ -24,9 +24,9 @@ k = {"in":1,"out":1,"sms":{"free":5,"rate":1}}
 l = len(df.index)
 for i in range(0,l):
     if df["msisdn_origin"][i] == 911926375:
-        S+=ceil(df["call_duration"][i])*k["out"]
+        S+=df["call_duration"][i]*k["out"]
         S+=(df["sms_number"][i] - k["sms"]["free"])*k["sms"]["rate"]
     if df["msisdn_dest"][i] == 911926375:
-        S+=ceil(df["call_duration"][i])*k["in"]
-print("Итоговый счет: {} рублей".format(S))
+        S+=df["call_duration"][i]*k["in"]
+print("Итоговый счет: {} рублей".format(round(S,2)))
     
